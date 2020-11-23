@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getCountries } from './actions/index';
 
-const Header = ({ number }) => {
-	console.log(number);
-	useEffect(() => {
-		getCountries();
-	}, []);
-
-	return <h1 className='ui header'>{number}</h1>;
+const Header = ({ number, title }) => {
+	return (
+		<div className='ui header centered'>
+			<h1>{title}</h1>
+			<h3>There are {number} countries</h3>
+		</div>
+	);
 };
-const mapStateToProps = (state) => ({
-	number: state.countries.length,
-});
+const mapStateToProps = (state) => {
+	return { number: state.countries.length };
+};
 
-export default connect(mapStateToProps, { getCountries })(Header);
+export default connect(mapStateToProps)(Header);
