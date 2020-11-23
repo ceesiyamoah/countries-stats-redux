@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import blank from '../svg/blank.svg';
 
 const CountryList = ({ countries }) => {
 	const countriesRender = countries.map(
-		({ flag, name, capital, population, currencies, languages }) => (
+		({
+			flag,
+			name,
+			capital,
+			population,
+			currencies,
+			languages,
+			alpha2Code,
+		}) => (
 			<div className='four wide column' style={{ marginLeft: '' }} key={name}>
 				<div className='ui card'>
 					<div className='content'>
@@ -38,7 +47,9 @@ const CountryList = ({ countries }) => {
 								<b>Languages: </b>
 								{languages.map((lang) => lang.name).join(',')}
 							</p>
-							<button className='ui button primary'>Learn more</button>
+							<Link to={`country/${alpha2Code}`} className='ui button primary'>
+								Learn more
+							</Link>
 						</div>
 					</div>
 				</div>

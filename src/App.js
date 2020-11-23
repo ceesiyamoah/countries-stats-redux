@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Header from './components/Header';
-import CountryDetail from './components/CountryDetail';
+import CountryDetails from './components/CountryDetails';
 import Search from './components/Search';
 import { connect } from 'react-redux';
 import { getCountries } from './components/actions/index';
 import CountriesList from './components/CountriesList';
+import history from './history';
 
 const App = ({ countries, getCountries }) => {
 	useEffect(() => {
@@ -23,12 +24,12 @@ const App = ({ countries, getCountries }) => {
 	}
 	return (
 		<div className='ui conatiner'>
-			<BrowserRouter>
+			<Router history={history}>
 				<Header title='Welcome to the Countries Hub' />
-				<Route path='/country/:id' exact component={CountryDetail} />
 				<Search />
-				<CountriesList />
-			</BrowserRouter>
+				<Route path='/country/:id' exact component={CountryDetails} />
+				<Route path='/' exact component={CountriesList} />
+			</Router>
 		</div>
 	);
 };
