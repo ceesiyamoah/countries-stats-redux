@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCountry, removeCountry } from './actions/index';
 import history from '../history';
 
-const CountryDetail = ({ match, country, getCountry }) => {
+const CountryDetail = ({ match, country, getCountry, removeCountry }) => {
 	useEffect(() => {
 		getCountry(match.params.id);
 	}, [getCountry, match.params.id]);
